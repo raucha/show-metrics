@@ -1,0 +1,32 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  </head>
+  <body>
+    <button py-click="disp_df()" class="py-button">dfを表示</button>
+    <button py-click="disp_map()" class="py-button">地図を表示</button>
+    <div id="df"></div>
+    <div id="now"></div>
+    <py-config>
+      packages = ["pymap3d", "pandas","folium"]
+      files = ["timetable.csv"]
+      [[fetch]]
+      files = ["./main.py"]
+
+    </py-config>
+
+    <py-script src="./main.py" />
+    <py-script>
+        def disp_map():
+            m = get_map()
+            display(m, target="now")
+
+        def disp_df():
+            df = get_df()
+            display(df, target="df")
+    </py-script>
+
+  </body>
+</html>
